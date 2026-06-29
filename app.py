@@ -205,53 +205,55 @@ async def GetAccountInformation(uid, region=None):
 def format_response(data):
     if not data:
         return {"error": "No data"}
-    basic  = data.get("basicInfo", {})
-    clan   = data.get("clanBasicInfo", {})
-    profile = data.get("profileInfo", {})
+
+    basic = data.get("basic_info", {})
+    clan = data.get("clan_basic_info", {})
+    profile = data.get("profile_info", {})
+
     return {
         "AccountInfo": {
-            "AccountAvatarId":   str(basic.get("headPic", "0")),
-            "AccountBPBadges":   str(basic.get("badgeCnt", "0")),
-            "AccountBPID":       str(basic.get("badgeId", "0")),
-            "AccountBannerId":   str(basic.get("bannerId", "0")),
-            "AccountCreateTime": str(basic.get("createAt", "0")),
-            "AccountEXP":        str(basic.get("exp", "0")),
-            "AccountLastLogin":  str(basic.get("lastLoginAt", "0")),
-            "AccountLevel":      str(basic.get("level", "0")),
-            "AccountLikes":      str(basic.get("liked", "0")),
-            "AccountName":       basic.get("nickname", "Unknown"),
-            "AccountRegion":     basic.get("region", "Unknown"),
-            "AccountSeasonId":   str(basic.get("seasonId", "0")),
-            "AccountType":       str(basic.get("accountType", "0")),
-            "BrMaxRank":         str(basic.get("maxRank", "0")),
-            "BrRankPoint":       str(basic.get("rankingPoints", "0")),
-            "CsMaxRank":         str(basic.get("csMaxRank", "0")),
-            "CsRankPoint":       str(basic.get("csRankingPoints", "0")),
-            "EquippedWeapon":    basic.get("weaponSkinShows", []),
-            "ReleaseVersion":    basic.get("releaseVersion", RELEASEVERSION),
-            "ShowBrRank":        str(basic.get("showBrRank", "0")),
-            "ShowCsRank":        str(basic.get("showCsRank", "0")),
-            "Title":             str(basic.get("title", "0")),
-            "HasElitePass":      str(basic.get("hasElitePass", "0")),
-            "IsDeleted":         str(basic.get("isDeleted", "0")),
-            "PeriodicRank":      str(basic.get("periodicRank", "0")),
-            "PeriodicRankPoints": str(basic.get("periodicRankingPoints", "0")),
-            "BrPeakRankPos":     str(basic.get("peakRankPos", "0")),
-            "CsPeakRankPos":     str(basic.get("csPeakRankPos", "0")),
+            "AccountAvatarId": str(basic.get("head_pic", "0")),
+            "AccountBPBadges": str(basic.get("badge_id", "0")),
+            "AccountBPID": str(basic.get("badge_id", "0")),
+            "AccountBannerId": str(basic.get("banner_id", "0")),
+            "AccountCreateTime": str(basic.get("create_at", "0")),
+            "AccountEXP": str(basic.get("exp", "0")),
+            "AccountLastLogin": str(basic.get("last_login_at", "0")),
+            "AccountLevel": str(basic.get("level", "0")),
+            "AccountLikes": str(basic.get("liked", "0")),
+            "AccountName": basic.get("nickname", "Unknown"),
+            "AccountRegion": basic.get("region", "Unknown"),
+            "AccountSeasonId": str(basic.get("season_id", "0")),
+            "AccountType": str(basic.get("account_type", "0")),
+            "BrMaxRank": str(basic.get("max_rank", "0")),
+            "BrRankPoint": str(basic.get("ranking_points", "0")),
+            "CsMaxRank": str(basic.get("cs_max_rank", "0")),
+            "CsRankPoint": str(basic.get("cs_rank", "0")),
+            "EquippedWeapon": basic.get("weapon_skin_shows", []),
+            "ReleaseVersion": RELEASEVERSION,
+            "ShowBrRank": "1",
+            "ShowCsRank": "1",
+            "Title": "0",
+            "HasElitePass": "0",
+            "IsDeleted": "0",
+            "PeriodicRank": "0",
+            "PeriodicRankPoints": "0",
+            "BrPeakRankPos": "0",
+            "CsPeakRankPos": "0",
         },
         "AccountProfileInfo": {
-            "EquippedOutfit": profile.get("clothes", []),
+            "EquippedOutfit": profile.get("skin_color", [])
         },
         "GuildInfo": {
             "GuildCapacity": str(clan.get("capacity", "0")),
-            "GuildID":       str(clan.get("clanId", "0")),
-            "GuildLevel":    str(clan.get("clanLevel", "0")),
-            "GuildMember":   str(clan.get("memberNum", "0")),
-            "GuildName":     clan.get("clanName", "No Guild"),
-            "GuildOwner":    str(clan.get("captainId", "0")),
-            "HonorPoint":    str(clan.get("honorPoint", "0")),
+            "GuildID": str(clan.get("clan_id", "0")),
+            "GuildLevel": str(clan.get("clan_level", "0")),
+            "GuildMember": str(clan.get("member_num", "0")),
+            "GuildName": clan.get("clan_name", "No Guild"),
+            "GuildOwner": str(clan.get("captain_id", "0")),
+            "HonorPoint": "0",
         },
-        "socialinfo": {}  # not used
+        "socialinfo": data.get("social_info", {})
     }
 
 # ======================== EMBEDDED HTML WITH LARGER BOTTOM BUTTONS ==========================
